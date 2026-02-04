@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Claude Code
+.claude/
+.mcp.json
+
+# Environment / Secrets
+.env
+.env.*
+config.js
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build
+dist/
