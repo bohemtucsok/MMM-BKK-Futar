@@ -1,0 +1,16 @@
+{
+  "name": "mmm-bkk-futar",
+  "version": "1.0.0",
+  "description": "MagicMirror² module for displaying real-time BKK FUTÁR departure information",
+  "main": "MMM-BKK-Futar.js",
+  "author": "Gabesz",
+  "license": "MIT",
+  "keywords": [
+    "magicmirror",
+    "module",
+    "bkk",
+    "futar",
+    "budapest",
+    "public-transport"
+  ]
+}

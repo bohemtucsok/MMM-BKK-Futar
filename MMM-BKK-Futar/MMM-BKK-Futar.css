@@ -1,0 +1,89 @@
+.mmm-bkk-futar {
+  line-height: 1.6;
+}
+
+.stop-section {
+  margin-bottom: 8px;
+}
+
+.stop-separator {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stop-header {
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.departure-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.departure-row td {
+  padding: 2px 4px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.route-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.route-number {
+  font-weight: bold;
+  text-align: center;
+  min-width: 32px;
+  padding-right: 8px;
+}
+
+.route-badge {
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.destination {
+  padding-left: 4px;
+  padding-right: 12px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.departure-time {
+  text-align: right;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.departure-time.predicted {
+  color: #4fc3f7;
+}
+
+.departure-soon {
+  animation: blink-warning 1.5s ease-in-out infinite;
+}
+
+.departure-now {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+@keyframes blink-warning {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
