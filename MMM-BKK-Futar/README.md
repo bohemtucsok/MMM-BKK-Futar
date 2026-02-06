@@ -1,84 +1,86 @@
 # MMM-BKK-Futar
 
-> MagicMirror² modul budapesti tömegközlekedési indulási adatok valós idejű megjelenítéséhez a [BKK FUTÁR](https://futar.bkk.hu/) API-n keresztül.
+> A MagicMirror² module for displaying real-time Budapest public transport departure information using the [BKK FUTÁR](https://futar.bkk.hu/) API.
+
+**[Magyar nyelv (Hungarian)](README.hu.md)**
 
 ---
 
-## Megjelenés
+## Preview
 
 ```
 ┌──────────────────────────────────────┐
-│         MÓRICZ ZSIGMOND KÖRTÉR       │
-│  🚊  47   Deák Ferenc tér        2p │  ← villog, hamarosan indul
-│  🚊  49   Deák Ferenc tér        5p │  ← kék: valós idejű adat
-│  🚍   7   Bosnyák tér           12p │
-│  🚍 133E  Népliget              18p │
+│       MÓRICZ ZSIGMOND KÖRTÉR         │
+│  🚊  47   Deák Ferenc tér        2m │  ← blinking, departing soon
+│  🚊  49   Deák Ferenc tér        5m │  ← blue: real-time data
+│  🚍   7   Bosnyák tér           12m │
+│  🚍 133E  Népliget              18m │
 │                                      │
-│           SZENT GELLÉRT TÉR          │
-│  🚊  19   Bécsi út / Vörösvári  3p  │
-│  🚍  86   Óbuda, Bogdáni út    10p  │
-│  🚇  M4   Keleti pályaudvar    14p  │
+│          SZENT GELLÉRT TÉR           │
+│  🚊  19   Bécsi út / Vörösvári  3m  │
+│  🚍  86   Óbuda, Bogdáni út    10m  │
+│  🚇  M4   Keleti pályaudvar    14m  │
 └──────────────────────────────────────┘
 ```
 
-## Funkciók
+## Features
 
-- **Több megálló** figyelése egyszerre, megállónként külön szekcióban
-- **Járatszűrés** megállónként (pl. csak a 9-es és 47-es járatot mutassa)
-- **Valós idejű adatok** - a BKK FUTÁR GPS-alapú becsült érkezési idejét használja, ha elérhető
-- **BKK színkódok** - a járatszámok a BKK hivatalos színeivel jelennek meg
-- **Járat típus ikonok** - busz 🚍, villamos 🚊, metró 🚇, HÉV 🚆, trolibusz 🚎, hajó ⛴️
-- **Hamarosan induló járatok** kiemelése villogással (2 percen belül)
-- **Relatív vagy abszolút** időformátum ("5 perc" vagy "14:32")
-- **Fade effekt** - a lista alja fokozatosan halványodik
-- **Magyar és angol** nyelvi támogatás
-- **Nincs külső függőség** - csak a Node.js beépített `https` modulját használja
+- **Multiple stops** — monitor several stops at once, each displayed in a separate section
+- **Route filtering** — show only specific routes per stop (e.g. only bus 9 and tram 47)
+- **Real-time data** — uses BKK FUTÁR GPS-based predicted arrival times when available
+- **BKK color codes** — route numbers displayed with official BKK brand colors
+- **Vehicle type icons** — bus 🚍, tram 🚊, metro 🚇, suburban rail 🚆, trolleybus 🚎, ferry ⛴️
+- **Imminent departure highlight** — rows blink when departure is within 2 minutes
+- **Relative or absolute time** — display "5 min" or "14:32" format
+- **Fade effect** — list gradually fades towards the bottom
+- **Bilingual** — Hungarian and English language support
+- **No external dependencies** — uses only Node.js built-in `https` module
 
 ---
 
-## Telepítés
+## Installation
 
-### 1. Modul letöltése
+### 1. Download the module
 
-Navigálj a MagicMirror `modules` könyvtárába és klónozd a repót:
+Navigate to your MagicMirror `modules` directory and clone the repository:
 
 ```bash
 cd ~/MagicMirror/modules
-git clone https://gitlab.onevps.hu/egyeb_fejlesztesek/magicmirror_bkk.git
+git clone https://github.com/bohemtucsok/MMM-BKK-Futar.git
 ```
 
-Vagy másold be manuálisan az `MMM-BKK-Futar` mappát a `modules/` könyvtárba.
+Or manually copy the `MMM-BKK-Futar` folder into the `modules/` directory.
 
-> A modulnak **nincs külső függősége**, nem kell `npm install`-t futtatni.
+> This module has **no external dependencies** — no `npm install` required.
 
-### 2. API kulcs beszerzése
+### 2. Get a BKK API key
 
-A modul a BKK nyílt adatplatformjának API-ját használja. Az API kulcs ingyenes.
+The module uses the BKK open data platform API. The API key is free.
 
-1. Nyisd meg a [BKK OpenData](https://opendata.bkk.hu/) oldalt
-2. Kattints a **Regisztráció** gombra és hozz létre egy fiókot
-3. Bejelentkezés után igényelj egy **API kulcsot**
-4. Másold ki a kapott kulcsot - erre lesz szükség a konfigurációban
+1. Visit [BKK OpenData](https://opendata.bkk.hu/)
+2. Click **Register** and create an account
+3. After logging in, request an **API key**
+4. Copy the key — you'll need it for the configuration
 
-### 3. Megálló ID-k megkeresése
+### 3. Find your stop IDs
 
-Minden megállónak egyedi azonosítója van, amit a FUTÁR térképről olvashatsz ki:
+Every stop has a unique identifier that can be found on the FUTÁR map:
 
-1. Nyisd meg a [BKK FUTÁR térképet](https://futar.bkk.hu/)
-2. Keresd meg és kattints a kívánt megállóra
-3. Az info panelen vagy az URL-ben látható a megálló kódja (pl. `F02297`)
-4. A konfigurációban **`BKK_` előtaggal** add meg: `BKK_F02297`
+1. Open the [BKK FUTÁR map](https://futar.bkk.hu/)
+2. Find and click on your desired stop
+3. The stop code is visible in the info panel or URL (e.g. `F02297`)
+4. Use the **`BKK_` prefix** in the configuration: `BKK_F02297`
 
-### 4. MagicMirror konfiguráció
+### 4. MagicMirror configuration
 
-Add hozzá a modult a `config/config.js` fájl `modules` tömbjéhez:
+Add the module to the `modules` array in your `config/config.js`:
 
 ```javascript
 {
   module: "MMM-BKK-Futar",
   position: "top_left",
   config: {
-    apiKey: "ide-jön-a-te-bkk-api-kulcsod",
+    apiKey: "your-bkk-api-key",
     stops: [
       {
         stopId: "BKK_F02297",
@@ -95,66 +97,66 @@ Add hozzá a modult a `config/config.js` fájl `modules` tömbjéhez:
 
 ---
 
-## Konfiguráció
+## Configuration
 
-### Fő opciók
+### Main options
 
-| Opció | Típus | Alapértelmezett | Leírás |
-|:------|:------|:---------------:|:-------|
-| `apiKey` | String | `""` | **Kötelező.** BKK OpenData API kulcs |
-| `stops` | Array | `[]` | **Kötelező.** Figyelni kívánt megállók tömbje (lásd lent) |
-| `updateInterval` | Number | `60000` | Frissítési gyakoriság milliszekundumban (1 perc) |
-| `minutesAfter` | Number | `30` | Ennyi percen belüli indulásokat mutatja |
-| `maxResults` | Number | `5` | Maximum megjelenített járat megállónként |
-| `showRouteType` | Boolean | `true` | Járat típus ikon megjelenítése |
-| `showMinutesOnly` | Boolean | `true` | `true`: "5 perc", `false`: "14:32" formátum |
-| `language` | String | `"hu"` | Nyelv: `"hu"` (magyar) vagy `"en"` (angol) |
-| `coloredRoutes` | Boolean | `true` | BKK hivatalos színkódok használata |
-| `fadePoint` | Number | `0.25` | Lista halványulás kezdőpontja (0.0 - 1.0) |
+| Option | Type | Default | Description |
+|:-------|:-----|:-------:|:------------|
+| `apiKey` | String | `""` | **Required.** BKK OpenData API key |
+| `stops` | Array | `[]` | **Required.** Array of stops to monitor (see below) |
+| `updateInterval` | Number | `60000` | Update frequency in milliseconds (default: 1 min) |
+| `minutesAfter` | Number | `30` | Time window for upcoming departures in minutes |
+| `maxResults` | Number | `5` | Maximum number of departures shown per stop |
+| `showRouteType` | Boolean | `true` | Show vehicle type icon |
+| `showMinutesOnly` | Boolean | `true` | `true`: "5 min", `false`: "14:32" format |
+| `language` | String | `"hu"` | Language: `"hu"` (Hungarian) or `"en"` (English) |
+| `coloredRoutes` | Boolean | `true` | Use official BKK color codes for route numbers |
+| `fadePoint` | Number | `0.25` | Start point of list fade effect (0.0 - 1.0) |
 
-### Megálló konfiguráció (`stops[]`)
+### Stop configuration (`stops[]`)
 
-| Mező | Típus | Kötelező | Leírás |
-|:-----|:------|:--------:|:-------|
-| `stopId` | String | Igen | Megálló azonosító, pl. `"BKK_F02297"` |
-| `stopName` | String | Nem | Egyedi megjelenített név. Ha nincs megadva, az API-ból kapott nevet használja |
-| `routeIds` | Array | Nem | Csak ezeket a járatokat mutassa. Ha üres vagy hiányzik, minden járat megjelenik |
+| Field | Type | Required | Description |
+|:------|:-----|:--------:|:------------|
+| `stopId` | String | Yes | Stop identifier, e.g. `"BKK_F02297"` |
+| `stopName` | String | No | Custom display name. If omitted, the name is fetched from the API |
+| `routeIds` | Array | No | Filter to show only these routes. If empty or omitted, all routes are shown |
 
 ---
 
-## Járatszűrés
+## Route filtering
 
-A `routeIds` tömbbe a járatok kétféleképpen adhatók meg:
+Routes in the `routeIds` array can be specified in two ways:
 
-| Megadás módja | Példa | Mikor használd |
-|:--------------|:------|:---------------|
-| Járat rövid neve | `"9"`, `"47"`, `"M2"` | Egyszerű, kényelmes |
-| BKK route ID | `"BKK_0090"`, `"BKK_0470"` | Pontos egyezés, ha a rövid név nem egyedi |
+| Method | Example | When to use |
+|:-------|:--------|:------------|
+| Route short name | `"9"`, `"47"`, `"M2"` | Simple and convenient |
+| BKK route ID | `"BKK_0090"`, `"BKK_0470"` | Exact match when the short name is ambiguous |
 
-**Példa:** Csak a 9-es buszt és a 47-es villamost mutassa:
+**Example:** Show only bus 9 and tram 47:
 
 ```javascript
 routeIds: ["9", "47"]
 ```
 
-**Tipp:** Ha nem adod meg a `routeIds`-t, az adott megálló **összes járata** megjelenik.
+**Tip:** If `routeIds` is not specified, **all routes** at the given stop will be displayed.
 
 ---
 
-## Megjelenítés részletei
+## Visual guide
 
-| Vizuális elem | Leírás |
-|:--------------|:-------|
-| Kék idő | Valós idejű (GPS-alapú) becsült indulási idő |
-| Fehér idő | Menetrend szerinti indulási idő |
-| Villogó sor | A járat 2 percen belül indul |
-| Narancssárga "most" | A járat éppen indul |
-| Halványodó sorok | A lista alja fokozatosan elhalványodik (fade effekt) |
-| Színes járatszám | BKK hivatalos háttérszín a járatszámon |
+| Element | Description |
+|:--------|:------------|
+| Blue time | Real-time (GPS-based) predicted departure time |
+| White time | Scheduled departure time |
+| Blinking row | Departure within 2 minutes |
+| Orange "now" | Departing right now |
+| Fading rows | List gradually fades towards the bottom |
+| Colored route number | Official BKK background color on the route badge |
 
 ---
 
-## Architektúra
+## Architecture
 
 ```
 ┌─────────────────────┐     socket      ┌──────────────────┐
@@ -169,36 +171,37 @@ routeIds: ["9", "47"]
                                         └──────────────────┘
 ```
 
-1. A **frontend** (`MMM-BKK-Futar.js`) induláskor és periodikusan `GET_DEPARTURES` üzenetet küld a backendnek
-2. A **backend** (`node_helper.js`) minden megállóra párhuzamosan lekéri az adatokat a BKK API-ból
-3. A válaszból kiszűri a járatokat, összekapcsolja a route/trip referenciákat, és `DEPARTURES_RESULT` üzenetben visszaküldi
-4. A frontend felépíti a DOM-ot és megjeleníti az indulási táblázatot
+1. The **frontend** (`MMM-BKK-Futar.js`) sends a `GET_DEPARTURES` message to the backend on start and periodically
+2. The **backend** (`node_helper.js`) fetches data from the BKK API for all configured stops in parallel
+3. It parses the response, resolves route/trip references, filters routes, and sends back a `DEPARTURES_RESULT` message
+4. The frontend builds the DOM and renders the departure table
 
 ---
 
-## Fájlstruktúra
+## File structure
 
 ```
 MMM-BKK-Futar/
-├── MMM-BKK-Futar.js    # Frontend modul (MagicMirror Module osztály)
-├── node_helper.js       # Backend (BKK API hívások, adatfeldolgozás)
-├── MMM-BKK-Futar.css    # Megjelenítési stílusok
-├── package.json         # Modul metaadatok
-└── README.md            # Ez a fájl
+├── MMM-BKK-Futar.js    # Frontend module (MagicMirror Module class)
+├── node_helper.js       # Backend (BKK API calls, data processing)
+├── MMM-BKK-Futar.css    # Display styles
+├── package.json         # Module metadata
+├── README.md            # This file (English)
+└── README.hu.md         # Hungarian documentation
 ```
 
 ---
 
-## Példa konfigurációk
+## Example configurations
 
-### Egy megálló, minden járat
+### Single stop, all routes
 
 ```javascript
 {
   module: "MMM-BKK-Futar",
   position: "top_right",
   config: {
-    apiKey: "az-api-kulcsod",
+    apiKey: "your-api-key",
     stops: [
       { stopId: "BKK_F02297", stopName: "Deák Ferenc tér" }
     ]
@@ -206,14 +209,14 @@ MMM-BKK-Futar/
 }
 ```
 
-### Több megálló, szűrt járatokkal
+### Multiple stops with route filtering
 
 ```javascript
 {
   module: "MMM-BKK-Futar",
   position: "top_left",
   config: {
-    apiKey: "az-api-kulcsod",
+    apiKey: "your-api-key",
     stops: [
       {
         stopId: "BKK_F02297",
@@ -229,19 +232,19 @@ MMM-BKK-Futar/
     updateInterval: 30000,
     minutesAfter: 45,
     maxResults: 8,
-    language: "hu"
+    language: "en"
   }
 }
 ```
 
-### Angol nyelv, abszolút idő
+### Minimal, absolute time, no icons
 
 ```javascript
 {
   module: "MMM-BKK-Futar",
   position: "bottom_left",
   config: {
-    apiKey: "az-api-kulcsod",
+    apiKey: "your-api-key",
     stops: [
       { stopId: "BKK_F02297" }
     ],
@@ -255,29 +258,29 @@ MMM-BKK-Futar/
 
 ---
 
-## Hibaelhárítás
+## Troubleshooting
 
-| Probléma | Megoldás |
-|:---------|:--------|
-| "Betöltés..." marad | Ellenőrizd az API kulcsot és a hálózati kapcsolatot |
-| Üres lista | Ellenőrizd a megálló ID-t a [FUTÁR térképen](https://futar.bkk.hu/). Lehet, hogy nincs járat a beállított időablakban |
-| Nem jelenik meg a modul | Ellenőrizd, hogy a modul mappa neve pontosan `MMM-BKK-Futar` és a `config.js`-ben a `module` értéke is ez |
-| Jogosultsági hiba (EACCES) | `sudo chown -R $USER:$USER ~/MagicMirror` majd `npm install` |
+| Problem | Solution |
+|:--------|:---------|
+| Stuck on "Loading..." | Verify your API key and network connectivity |
+| Empty list | Check the stop ID on the [FUTÁR map](https://futar.bkk.hu/). There may be no departures within the configured time window |
+| Module not showing | Ensure the module folder is named exactly `MMM-BKK-Futar` and the `module` value in `config.js` matches |
+| Permission error (EACCES) | Run `sudo chown -R $USER:$USER ~/MagicMirror` then `npm install` |
 
-A MagicMirror konzolban (`~/.pm2/logs/` vagy böngésző DevTools) további hibaüzenetek jelenhetnek meg `MMM-BKK-Futar:` prefixszel.
+Check the MagicMirror console (`~/.pm2/logs/` or browser DevTools) for error messages prefixed with `MMM-BKK-Futar:`.
 
 ---
 
 ## API
 
-Ez a modul a [BKK FUTÁR Utazástervező API](https://bkkfutar.docs.apiary.io/) `arrivals-and-departures-for-stop` endpointját használja.
+This module uses the [BKK FUTÁR Travel Planner API](https://bkkfutar.docs.apiary.io/) `arrivals-and-departures-for-stop` endpoint.
 
 - **Endpoint:** `https://futar.bkk.hu/api/query/v1/ws/otp/api/where/arrivals-and-departures-for-stop.json`
-- **Dokumentáció:** [bkkfutar.docs.apiary.io](https://bkkfutar.docs.apiary.io/)
-- **OpenData portál:** [opendata.bkk.hu](https://opendata.bkk.hu/)
+- **Documentation:** [bkkfutar.docs.apiary.io](https://bkkfutar.docs.apiary.io/)
+- **OpenData portal:** [opendata.bkk.hu](https://opendata.bkk.hu/)
 
 ---
 
-## Licenc
+## License
 
 MIT
