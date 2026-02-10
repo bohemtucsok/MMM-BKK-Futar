@@ -281,6 +281,16 @@ This module uses the [BKK FUTÁR Travel Planner API](https://bkkfutar.docs.apiar
 
 ---
 
+## Supporters
+
+<p align="center">
+  <a href="https://infotipp.hu"><img src="docs/images/infotipp-logo.png" height="40" alt="Infotipp Rendszerház Kft." /></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://brutefence.com"><img src="docs/images/brutefence.png" height="40" alt="BruteFence" /></a>
+</p>
+
+---
+
 ## License
 
 MIT
