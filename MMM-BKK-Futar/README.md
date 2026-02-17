@@ -43,7 +43,7 @@ Configure your stops, filter your routes → departure times appear on your mirr
 - **Route filtering** — show only specific routes per stop (e.g. only bus 9 and tram 47)
 - **Real-time data** — GPS-based predicted arrival times when available
 - **BKK color codes** — route numbers with official BKK brand colors
-- **Vehicle type icons** — bus 🚍, tram 🚊, metro 🚇, suburban rail 🚆, trolleybus 🚎, ferry ⛴️
+- **Colored vehicle type icons** — Font Awesome icons with BKK brand colors (bus: blue, tram: yellow, metro: red, suburban rail: green, trolleybus: red, ferry: light blue)
 - **Imminent departure highlight** — rows blink when departure is within 2 minutes
 - **Relative or absolute time** — "5 min" or "14:32" format
 - **Fade effect** — list gradually fades towards the bottom
@@ -55,18 +55,19 @@ Configure your stops, filter your routes → departure times appear on your mirr
 ## Preview
 
 ```
-┌──────────────────────────────────────┐
-│       MÓRICZ ZSIGMOND KÖRTÉR         │
-│  🚊  47   Deák Ferenc tér        2m │  ← blinking, departing soon
-│  🚊  49   Deák Ferenc tér        5m │  ← blue: real-time data
-│  🚍   7   Bosnyák tér           12m │
-│  🚍 133E  Népliget              18m │
-│                                      │
-│          SZENT GELLÉRT TÉR           │
-│  🚊  19   Bécsi út / Vörösvári  3m  │
-│  🚍  86   Óbuda, Bogdáni út    10m  │
-│  🚇  M4   Keleti pályaudvar    14m  │
-└──────────────────────────────────────┘
+┌──────────────────────────────────────────┐
+│         MÓRICZ ZSIGMOND KÖRTÉR           │
+│  🟡 ■  47   Deák Ferenc tér        2m   │  ← blinking, departing soon
+│  🟡 ■  49   Deák Ferenc tér        5m   │  ← blue: real-time data
+│  🔵 ■   7   Bosnyák tér           12m   │
+│  🔵 ■ 133E  Népliget              18m   │
+│                                          │
+│            SZENT GELLÉRT TÉR             │
+│  🟡 ■  19   Bécsi út / Vörösvári   3m   │
+│  🔵 ■  86   Óbuda, Bogdáni út     10m   │
+│  🔴 ■  M4   Keleti pályaudvar     14m   │
+└──────────────────────────────────────────┘
+  Icons: 🔵 bus  🟡 tram  🔴 metro  🟢 rail  🔴 trolley  🔵 ferry
 ```
 
 | Element | Meaning |
@@ -77,6 +78,7 @@ Configure your stops, filter your routes → departure times appear on your mirr
 | Orange "now" | Departing right now |
 | Fading rows | List fades towards the bottom |
 | Colored badge | Official BKK route color |
+| Colored icon | Vehicle type with BKK brand color (Font Awesome) |
 
 ---
 

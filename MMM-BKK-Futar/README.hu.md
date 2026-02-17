@@ -43,7 +43,7 @@ Megállók beállítása, járatok szűrése → indulási idők a tükrödön. 
 - **Járatszűrés** — megállónként csak adott járatok mutatása (pl. csak 9-es busz és 47-es villamos)
 - **Valós idejű adatok** — GPS-alapú becsült érkezési idők, ha elérhetők
 - **BKK színkódok** — járatszámok a BKK hivatalos színeivel
-- **Járat típus ikonok** — busz 🚍, villamos 🚊, metró 🚇, HÉV 🚆, trolibusz 🚎, hajó ⛴️
+- **Színes járat típus ikonok** — Font Awesome ikonok BKK márka színekkel (busz: kék, villamos: sárga, metró: piros, HÉV: zöld, trolibusz: piros, hajó: világoskék)
 - **Hamarosan induló járatok** — villogó sorok 2 percen belüli indulásnál
 - **Relatív vagy abszolút idő** — "5 perc" vagy "14:32" formátum
 - **Fade effekt** — a lista alja fokozatosan halványodik
@@ -55,18 +55,19 @@ Megállók beállítása, járatok szűrése → indulási idők a tükrödön. 
 ## Előnézet
 
 ```
-┌──────────────────────────────────────┐
-│       MÓRICZ ZSIGMOND KÖRTÉR         │
-│  🚊  47   Deák Ferenc tér      2 p  │  ← villog, hamarosan indul
-│  🚊  49   Deák Ferenc tér      5 p  │  ← kék: valós idejű adat
-│  🚍   7   Bosnyák tér         12 p  │
-│  🚍 133E  Népliget            18 p  │
-│                                      │
-│          SZENT GELLÉRT TÉR           │
-│  🚊  19   Bécsi út / Vörösvári 3 p  │
-│  🚍  86   Óbuda, Bogdáni út  10 p  │
-│  🚇  M4   Keleti pályaudvar  14 p  │
-└──────────────────────────────────────┘
+┌──────────────────────────────────────────┐
+│         MÓRICZ ZSIGMOND KÖRTÉR           │
+│  🟡 ■  47   Deák Ferenc tér       2 p   │  ← villog, hamarosan indul
+│  🟡 ■  49   Deák Ferenc tér       5 p   │  ← kék: valós idejű adat
+│  🔵 ■   7   Bosnyák tér          12 p   │
+│  🔵 ■ 133E  Népliget             18 p   │
+│                                          │
+│            SZENT GELLÉRT TÉR             │
+│  🟡 ■  19   Bécsi út / Vörösvári  3 p   │
+│  🔵 ■  86   Óbuda, Bogdáni út    10 p   │
+│  🔴 ■  M4   Keleti pályaudvar    14 p   │
+└──────────────────────────────────────────┘
+  Ikonok: 🔵 busz  🟡 villamos  🔴 metró  🟢 HÉV  🔴 troli  🔵 hajó
 ```
 
 | Elem | Jelentés |
@@ -77,6 +78,7 @@ Megállók beállítása, járatok szűrése → indulási idők a tükrödön. 
 | Narancssárga "most" | Éppen indul |
 | Halványodó sorok | A lista alja fokozatosan elhalványodik |
 | Színes járatszám | BKK hivatalos háttérszín |
+| Színes ikon | Járat típus BKK márka színnel (Font Awesome) |
 
 ---
 
