@@ -140,7 +140,9 @@ Module.register("MMM-BKK-Futar", {
     if (this.config.showRouteType) {
       var iconCell = document.createElement("td");
       iconCell.className = "route-icon";
-      iconCell.textContent = this.getRouteIcon(departure.routeType);
+      var icon = document.createElement("i");
+      icon.className = "fa fa-fw " + this.getRouteIcon(departure.routeType);
+      iconCell.appendChild(icon);
       row.appendChild(iconCell);
     }
 
@@ -191,14 +193,14 @@ Module.register("MMM-BKK-Futar", {
 
   getRouteIcon: function (routeType) {
     var icons = {
-      bus: "🚍",
-      trolleybus: "🚎",
-      tram: "🚊",
-      subway: "🚇",
-      rail: "🚆",
-      ferry: "⛴️",
+      bus: "fa-bus",
+      trolleybus: "fa-bus",
+      tram: "fa-train",
+      subway: "fa-subway",
+      rail: "fa-train",
+      ferry: "fa-ship",
     };
-    return icons[routeType] || "🚍";
+    return icons[routeType] || "fa-bus";
   },
 
   getTranslation: function (key) {
